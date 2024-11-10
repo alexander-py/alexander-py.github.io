@@ -6,16 +6,17 @@
 
 ## 💫 About Me
 
-I transform energy drinks into data pipelines. Currently crafting robust workflows with Apache Airflow and making data flow like Lake Michigan.
+I transform caffeine into data pipelines. Currently crafting robust workflows with Apache Airflow and making data flow like Lake Michigan.
 
 ## 🛠️ Tech I Enjoy
-```python
-tech_stack = {
-    "orchestration": "Apache Airflow",
-    "data_processing": ["Python", "SQL"],
-    "cloud_computing" : ["AWS", "Azure"],
-    "mindset": "Data-driven decisions"
-  }
+```hcl
+resource "engineer" "alexander_stefanov" {
+  orchestration     = "Apache Airflow"
+  data_processing  = ["Python", "SQL"]
+  cloud_computing  = ["AWS", "Azure"]
+  infra            = "Come on, it's obvious"
+  mindset          = "Data-driven decisions"
+}
 ```
 
 ## 📈 What I Do
