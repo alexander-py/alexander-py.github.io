@@ -24,7 +24,7 @@ resource "engineer" "alexander_stefanov" {
 - 🌊 Build data pipelines that never sleep
 - 🎯 Turn messy data into actionable insights
 - ⚙️ Automate all the things
-- 🔍 Drop all database
+- 🔍 Drop all databases
 
 ## 🤔 Ruminations
 
