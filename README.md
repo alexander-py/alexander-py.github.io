@@ -14,7 +14,7 @@ resource "engineer" "alexander_stefanov" {
   orchestration     = "Apache Airflow"
   data_processing  = ["Python", "SQL"]
   cloud_computing  = ["AWS", "Azure"]
-  infra            = "Come on, it's obvious"
+  iac            = "Come on, it's obvious"
   mindset          = "Data-driven decisions"
 }
 ```
