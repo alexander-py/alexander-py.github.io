@@ -26,6 +26,15 @@ resource "engineer" "alexander_stefanov" {
 - ⚙️ Automate all the things
 - 🔍 Drop all database
 
+## 🤔 Ruminations
+
+> "How come after all these years, Airflow is still in public preview in Azure? And just one very old version?"
+
+> "At least the naming in Azure is more straightforwad. EC2 vs ..VMs? Lambda vs ..Functions?"
+
+> "Airflow DAGs are like recipes - they should be simple and repeatable."
+
+
 ## 🌍 Let's Connect
 
 - 💼 [LinkedIn](https://linkedin.com/in/alexanderstefanoff)
