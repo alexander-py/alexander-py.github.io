@@ -39,7 +39,7 @@ resource "engineer" "alexander_stefanov" {
 
 - 💼 [LinkedIn](https://linkedin.com/in/alexanderstefanoff)
 - 💻 [GitHub](https://github.com/alexander-py)
-
+- ✍️ [Blog](https://substack.com/@alexanderpy)
 ---
 <div align="center">
   <i>Data is the new bacon 🥓</i>
