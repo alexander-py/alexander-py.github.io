@@ -554,16 +554,30 @@
             html.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
 
-            // Update icon
+            // Update icon and text
             const icon = document.querySelector('.theme-switch i');
-            icon.className = newTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+            const text = document.querySelector('.theme-text');
+            if (newTheme === 'light') {
+                icon.className = 'fas fa-moon';
+                text.textContent = 'Dark Mode';
+            } else {
+                icon.className = 'fas fa-sun';
+                text.textContent = 'Light Mode';
+            }
         }
 
         // Initialize theme
         const savedTheme = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
         const icon = document.querySelector('.theme-switch i');
-        icon.className = savedTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+        const text = document.querySelector('.theme-text');
+        if (savedTheme === 'light') {
+            icon.className = 'fas fa-moon';
+            text.textContent = 'Dark Mode';
+        } else {
+            icon.className = 'fas fa-sun';
+            text.textContent = 'Light Mode';
+        }
     </script>
 </body>
 </html>
