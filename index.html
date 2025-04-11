@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alexander - Data Engineer</title>
+    <title>Alexander Stefanov - Data Engineer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #3b82f6;
-            --secondary-color: #1d4ed8;
+            --primary-color: #6366f1;
+            --secondary-color: #4f46e5;
             --accent-color: #f59e0b;
-            --dark-bg: #111827;
-            --darker-bg: #0f172a;
-            --text-color: #e5e7eb;
-            --text-muted: #9ca3af;
+            --accent-color-2: #10b981;
+            --dark-bg: #0f172a;
+            --darker-bg: #020617;
+            --text-color: #e2e8f0;
+            --text-muted: #94a3b8;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.1);
         }
 
         * {
@@ -30,6 +33,9 @@
             background-color: var(--dark-bg);
             color: var(--text-color);
             line-height: 1.6;
+            background-image:
+                radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
         }
 
         .container {
@@ -65,7 +71,9 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1), transparent 70%);
+            background:
+                radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.15), transparent 70%),
+                radial-gradient(circle at 80% 80%, rgba(245, 158, 11, 0.15), transparent 70%);
             pointer-events: none;
         }
 
@@ -91,6 +99,13 @@
             margin-bottom: 2rem;
         }
 
+        .bio {
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+
         .cta-button {
             display: inline-block;
             padding: 1rem 2rem;
@@ -105,11 +120,7 @@
 
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
-        }
-
-        .skills-section {
-            background-color: var(--darker-bg);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
         }
 
         .section-title {
@@ -136,16 +147,34 @@
         }
 
         .skill-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--card-bg);
             padding: 2.5rem;
             border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .skill-card:hover {
             transform: translateY(-5px);
             border-color: var(--primary-color);
+        }
+
+        .skill-card:hover::before {
+            opacity: 1;
         }
 
         .skill-card i {
@@ -161,6 +190,69 @@
         }
 
         .skill-card p {
+            color: var(--text-muted);
+        }
+
+        .testimonials {
+            background: linear-gradient(135deg, var(--darker-bg), var(--dark-bg));
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color-2);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+
+        .author-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .author-title {
+            font-size: 0.9rem;
             color: var(--text-muted);
         }
 
@@ -186,7 +278,7 @@
             margin: 0 1.5rem;
             color: var(--text-color);
             font-size: 1.8rem;
-            transition: color 0.3s ease, transform 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .social-links a:hover {
@@ -203,12 +295,12 @@
         }
 
         .tech-badge {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--card-bg);
             padding: 0.5rem 1.5rem;
             border-radius: 50px;
             font-size: 0.9rem;
             color: var(--text-muted);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--card-border);
             transition: all 0.3s ease;
         }
 
@@ -216,6 +308,7 @@
             background: var(--primary-color);
             color: white;
             border-color: var(--primary-color);
+            transform: translateY(-2px);
         }
 
         @media (max-width: 768px) {
@@ -234,6 +327,10 @@
             .skill-card {
                 padding: 2rem;
             }
+
+            .bio {
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
@@ -241,8 +338,12 @@
     <header>
         <div class="container">
             <div class="hero">
-                <h1>Alexander</h1>
-                <p class="tagline">Data Engineer | Cloud Architect | Automotive Enthusiast</p>
+                <h1>Alexander Stefanov</h1>
+                <p class="tagline">Data Engineer | Cloud Architect | AI Enthusiast</p>
+                <p class="bio">
+                    I specialize in building robust data infrastructure and ETL pipelines, with expertise in cloud-native solutions, infrastructure automation, and AI/ML systems.
+                    My work focuses on creating scalable, efficient data ecosystems that drive business value through advanced analytics and machine learning.
+                </p>
                 <a href="#connect" class="cta-button">Let's Connect</a>
             </div>
         </div>
@@ -272,6 +373,48 @@
                     <h3>Infrastructure as Code</h3>
                     <p>Strong background in IaC practices, ensuring consistent and automated infrastructure deployment.</p>
                 </div>
+                <div class="skill-card">
+                    <i class="fab fa-linux"></i>
+                    <h3>Linux Systems</h3>
+                    <p>Extensive experience with Linux systems administration, shell scripting, and server management.</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-robot"></i>
+                    <h3>AI & LLMs</h3>
+                    <p>Experience in building and deploying AI agents and working with Large Language Models for various applications.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What People Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Alexander's expertise in data engineering and cloud infrastructure has been instrumental in transforming our data pipeline architecture. His attention to detail and problem-solving skills are exceptional."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JD</div>
+                        <div class="author-info">
+                            <span class="author-name">John Doe</span>
+                            <span class="author-title">CTO, TechCorp</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Working with Alexander on our cloud migration project was a game-changer. His knowledge of AWS and Azure, combined with his IaC expertise, helped us achieve a seamless transition."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AS</div>
+                        <div class="author-info">
+                            <span class="author-name">Alice Smith</span>
+                            <span class="author-title">Engineering Lead, CloudTech</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -281,7 +424,7 @@
             <i class="fas fa-car-side car-icon"></i>
             <h2 class="section-title">Beyond Code</h2>
             <p style="max-width: 600px; margin: 0 auto; color: var(--text-muted);">
-                When I'm not architecting data solutions, you'll find me exploring the world of automotive technology and working on cars.
+                When I'm not architecting data solutions or working with AI systems, you'll find me exploring the world of automotive technology and working on cars.
                 It's where my passion for precision engineering meets my love for problem-solving.
             </p>
         </div>
@@ -297,6 +440,8 @@
                 <span class="tech-badge">AWS</span>
                 <span class="tech-badge">Azure</span>
                 <span class="tech-badge">Terraform</span>
+                <span class="tech-badge">Linux</span>
+                <span class="tech-badge">LLMs</span>
             </div>
             <div style="margin-top: 3rem;">
                 <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer">
