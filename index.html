@@ -286,6 +286,71 @@
             transform: translateY(-3px);
         }
 
+        .blog-link {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: var(--card-bg);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .theme-switch {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: var(--card-bg);
+            color: var(--text-color);
+            border-radius: 50px;
+            font-size: 1rem;
+            border: 1px solid var(--card-border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-switch:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .theme-switch i {
+            font-size: 1.1rem;
+        }
+
+        [data-theme="light"] {
+            --primary-color: #4f46e5;
+            --secondary-color: #6366f1;
+            --accent-color: #d97706;
+            --accent-color-2: #059669;
+            --dark-bg: #f1f5f9;
+            --darker-bg: #e2e8f0;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+            --card-bg: rgba(0, 0, 0, 0.03);
+            --card-border: rgba(0, 0, 0, 0.1);
+        }
+
+        .dodge-logo {
+            width: 180px;
+            height: auto;
+            margin-bottom: 1.5rem;
+            filter: brightness(0) invert(1);
+            opacity: 0.95;
+        }
+
         .tech-stack {
             display: flex;
             flex-wrap: wrap;
@@ -341,8 +406,8 @@
                 <h1>Alexander Stefanov</h1>
                 <p class="tagline">Data Engineer | Cloud Architect | AI Enthusiast</p>
                 <p class="bio">
-                    I specialize in building robust data infrastructure and ETL pipelines, with expertise in cloud-native solutions, infrastructure automation, and AI/ML systems.
-                    My work focuses on creating scalable, efficient data ecosystems that drive business value through advanced analytics and machine learning.
+                    I transform caffeine into data pipelines. Currently crafting robust workflows with Apache Airflow and making data flow like Lake Michigan.
+                    To put it more formally though, I specialize in building robust data infrastructure and ETL pipelines, with expertise in cloud-native solutions, infrastructure automation, and AI/ML systems.
                 </p>
                 <a href="#connect" class="cta-button">Let's Connect</a>
             </div>
@@ -371,12 +436,12 @@
                 <div class="skill-card">
                     <i class="fas fa-code"></i>
                     <h3>Infrastructure as Code</h3>
-                    <p>Strong background in IaC practices, ensuring consistent and automated infrastructure deployment.</p>
+                    <p>Extensive IaC experience, ensuring consistent and automated infrastructure deployment.</p>
                 </div>
                 <div class="skill-card">
                     <i class="fab fa-linux"></i>
                     <h3>Linux Systems</h3>
-                    <p>Extensive experience with Linux systems administration, shell scripting, and server management.</p>
+                    <p>Strong background with Linux systems administration, shell scripting, and server management.</p>
                 </div>
                 <div class="skill-card">
                     <i class="fas fa-robot"></i>
@@ -390,28 +455,28 @@
     <section class="testimonials">
         <div class="container">
             <h2 class="section-title">What People Say</h2>
+            <div class="testimonial-card">
+                <p class="testimonial-text">
+                    "Working with Alexander on our cloud migration project was a game-changer. His knowledge of AWS and Azure, combined with his IaC expertise, helped us achieve a seamless transition."
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">AS</div>
+                    <div class="author-info">
+                        <span class="author-name">Alice Smith</span>
+                        <span class="author-title">Engineering Lead, Nielsen</span>
+                    </div>
+                </div>
+            </div>
             <div class="testimonial-grid">
                 <div class="testimonial-card">
                     <p class="testimonial-text">
-                        "Alexander's expertise in data engineering and cloud infrastructure has been instrumental in transforming our data pipeline architecture. His attention to detail and problem-solving skills are exceptional."
+                        "Having collaborated with Alexander on his master’s thesis, I witnessed his strong interest in data engineering, data science, and cloud technologies. His enthusiasm and technical contributions significantly elevated the quality of the thesis and were instrumental to its success."
                     </p>
                     <div class="testimonial-author">
                         <div class="author-avatar">JD</div>
                         <div class="author-info">
-                            <span class="author-name">John Doe</span>
-                            <span class="author-title">CTO, TechCorp</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">
-                        "Working with Alexander on our cloud migration project was a game-changer. His knowledge of AWS and Azure, combined with his IaC expertise, helped us achieve a seamless transition."
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">AS</div>
-                        <div class="author-info">
-                            <span class="author-name">Alice Smith</span>
-                            <span class="author-title">Engineering Lead, CloudTech</span>
+                            <span class="author-name">Bruno Yun</span>
+                            <span class="author-title">PhD, UoA & LYON 1</span>
                         </div>
                     </div>
                 </div>
@@ -421,7 +486,7 @@
 
     <section class="interests">
         <div class="container">
-            <i class="fas fa-car-side car-icon"></i>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Dodge_black_logo.svg" alt="Dodge Logo" class="dodge-logo">
             <h2 class="section-title">Beyond Code</h2>
             <p style="max-width: 600px; margin: 0 auto; color: var(--text-muted);">
                 When I'm not architecting data solutions or working with AI systems, you'll find me exploring the world of automotive technology and working on cars.
@@ -444,15 +509,25 @@
                 <span class="tech-badge">LLMs</span>
             </div>
             <div style="margin-top: 3rem;">
-                <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/in/alexanderstefanoff/" target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-linkedin"></i>
                 </a>
-                <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/alexander-py" target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <div style="margin-top: 2rem;">
+                <a href="https://substack.com/@alexanderpy" class="blog-link" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-blog"></i> Read My Blog
                 </a>
             </div>
         </div>
     </section>
+
+    <button class="theme-switch" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i>
+        <span class="theme-text">Dark Mode</span>
+    </button>
 
     <script>
         // Intersection Observer for fade-in animations
@@ -469,6 +544,26 @@
         document.querySelectorAll('section').forEach(section => {
             observer.observe(section);
         });
+
+        // Theme switching functionality
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+
+            // Update icon
+            const icon = document.querySelector('.theme-switch i');
+            icon.className = newTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+        }
+
+        // Initialize theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        const icon = document.querySelector('.theme-switch i');
+        icon.className = savedTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
     </script>
 </body>
 </html>
