@@ -3,532 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alexander Stefanov - Data Engineer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Alexander Stefanov // Data Engineer // Cloud // AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #10B981;
-            --secondary-color: #0D9488;
-            --accent-color: #A3E635;
-            --accent-color-2: #10b981;
-            --dark-bg: #0B0F11;
-            --darker-bg: #070A0C;
-            --text-color: #F3F4F6;
-            --text-muted: #9CA3AF;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-
-        body {
-            background-color: var(--dark-bg);
-            color: var(--text-color);
-            line-height: 1.6;
-            background-image:
-                radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(163, 230, 53, 0.05) 0%, transparent 50%);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        section {
-            padding: 6rem 0;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        header {
-            background: linear-gradient(135deg, var(--darker-bg), var(--dark-bg));
-            padding: 6rem 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.08), transparent 70%),
-                radial-gradient(circle at 80% 80%, rgba(163, 230, 53, 0.08), transparent 70%);
-            pointer-events: none;
-        }
-
-        /* Sticky Navigation Banner */
-        .sticky-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(11, 15, 17, 0.95);
-            backdrop-filter: blur(8px);
-            z-index: 1000;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transform: translateY(-100%);
-            transition: transform 0.3s ease;
-        }
-
-        .sticky-nav.visible {
-            transform: translateY(0);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .nav-link {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-            padding: 0.5rem 0;
-        }
-
-        .nav-link:hover {
-            color: var(--text-color);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        h1 {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .tagline {
-            font-size: 1.5rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-        }
-
-        .bio {
-            max-width: 700px;
-            margin: 0 auto 3rem;
-            font-size: 1.2rem;
-            color: var(--text-muted);
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-top: 2rem;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            font-size: 2.5rem;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
-            margin: 1rem auto;
-            border-radius: 2px;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-card {
-            background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 15px;
-            border: 1px solid var(--card-border);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-color);
-        }
-
-        .skill-card:hover::before {
-            opacity: 1;
-        }
-
-        .skill-card i {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-        }
-
-        .skill-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-color);
-        }
-
-        .skill-card p {
-            color: var(--text-muted);
-        }
-
-        .testimonials {
-            background: linear-gradient(135deg, var(--darker-bg), var(--dark-bg));
-            position: relative;
-        }
-
-        .testimonials::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.08), transparent 70%),
-                radial-gradient(circle at 80% 80%, rgba(163, 230, 53, 0.08), transparent 70%);
-            pointer-events: none;
-        }
-
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .testimonial-card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid var(--card-border);
-            transition: all 0.3s ease;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-color-2);
-        }
-
-        .testimonial-text {
-            font-style: italic;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: white;
-        }
-
-        .author-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .author-name {
-            font-weight: 600;
-            color: var(--text-color);
-        }
-
-        .author-title {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .interests {
-            text-align: center;
-            background: linear-gradient(135deg, var(--darker-bg), var(--dark-bg));
-            position: relative;
-        }
-
-        .interests::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.08), transparent 70%),
-                radial-gradient(circle at 80% 80%, rgba(163, 230, 53, 0.08), transparent 70%);
-            pointer-events: none;
-        }
-
-        .car-icon {
-            font-size: 3.5rem;
-            color: var(--accent-color);
-            margin-bottom: 1.5rem;
-        }
-
-        .social-links {
-            text-align: center;
-            padding: 4rem 0;
-            background: linear-gradient(135deg, var(--darker-bg), var(--dark-bg));
-            position: relative;
-        }
-
-        .social-links::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.08), transparent 70%),
-                radial-gradient(circle at 80% 80%, rgba(163, 230, 53, 0.08), transparent 70%);
-            pointer-events: none;
-        }
-
-        .social-links a {
-            display: inline-block;
-            margin: 0 1.5rem;
-            color: var(--text-color);
-            font-size: 1.8rem;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: var(--primary-color);
-            transform: translateY(-3px);
-        }
-
-        .blog-link {
-            display: inline-block;
-            padding: 0.5rem 1.5rem;
-            background: var(--card-bg);
-            color: var(--text-color);
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            border: 1px solid var(--card-border);
-            transition: all 0.3s ease;
-            margin-top: 2rem;
-        }
-
-        .theme-switch {
-            position: fixed;
-            top: 1.5rem;
-            right: 1.5rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.25rem;
-            background: var(--card-bg);
-            color: var(--text-color);
-            border-radius: 50px;
-            font-size: 1rem;
-            border: 1px solid var(--card-border);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            backdrop-filter: blur(8px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .theme-switch:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
-        }
-
-        .theme-switch i {
-            font-size: 1.1rem;
-        }
-
-        [data-theme="light"] {
-            --primary-color: #4f46e5;
-            --secondary-color: #6366f1;
-            --accent-color: #d97706;
-            --accent-color-2: #059669;
-            --dark-bg: #f1f5f9;
-            --darker-bg: #e2e8f0;
-            --text-color: #1e293b;
-            --text-muted: #64748b;
-            --card-bg: rgba(0, 0, 0, 0.03);
-            --card-border: rgba(0, 0, 0, 0.1);
-        }
-
-        [data-theme="light"] .sticky-nav {
-            background: rgba(241, 245, 249, 0.95);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .dodge-logo {
-            width: 180px;
-            height: auto;
-            margin-bottom: 1.5rem;
-            filter: brightness(0) invert(1);
-            opacity: 0.95;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .tech-badge {
-            background: var(--card-bg);
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            border: 1px solid var(--card-border);
-            transition: all 0.3s ease;
-        }
-
-        .tech-badge:hover {
-            background: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .tagline {
-                font-size: 1.2rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .skill-card {
-                padding: 2rem;
-            }
-
-            .bio {
-                font-size: 1.1rem;
-            }
-
-            .nav-links {
-                gap: 1rem;
-                font-size: 0.9rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .nav-links {
-                gap: 0.5rem;
-                font-size: 0.8rem;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- <div class="scanline-overlay"></div> -->
+
     <!-- Sticky Navigation Banner -->
     <nav class="sticky-nav">
-        <div class="nav-container">
+        <div class="nav-container container">
             <div class="nav-links">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#expertise" class="nav-link">Expertise</a>
-                <a href="#testimonials" class="nav-link">Testimonials</a>
-                <a href="#interests" class="nav-link">Interests</a>
-                <a href="#connect" class="nav-link">Connect</a>
+                <a href="#home" class="nav-link">> home</a>
+                <a href="#expertise" class="nav-link">> expertise</a>
+                <a href="#testimonials" class="nav-link">> logs</a>
+                <a href="#interests" class="nav-link">> interests</a>
+                <a href="#connect" class="nav-link">> connect</a>
             </div>
         </div>
     </nav>
@@ -536,45 +29,47 @@
     <header id="home">
         <div class="container">
             <div class="hero">
-                <h1>Alexander Stefanov</h1>
-                <p class="tagline">Data Engineer | Cloud Architect | AI Enthusiast</p>
+                <h1>Alexander_Stefanov</h1>
+
+                <p class="tagline"><span id="typing-effect"></span><span class="cursor">_</span></p>
                 <p class="bio">
-                    I transform caffeine into data pipelines. Currently crafting robust workflows with Apache Airflow and making data flow like Lake Michigan.
-                    To put it more formally though, I specialize in building robust data infrastructure and ETL pipelines, with expertise in cloud-native solutions, infrastructure automation, and AI/ML systems.
+                    &gt; Input: Monster Zero Sugar; Output: Data Pipelines.<br/>
+                    &gt; Process: Crafting robust workflows (Apache Airflow), optimizing data flow.<br/>
+                    &gt; Specialization: Data infrastructure, ETL, cloud-native solutions (AWS/Azure), IaC, AI/ML systems.
                 </p>
-                <a href="#connect" class="cta-button">Let's Connect</a>
+                <a href="#connect" class="cta-button">[ Initiate Connection ]</a>
             </div>
         </div>
     </header>
 
     <section id="expertise" class="skills-section">
         <div class="container">
-            <h2 class="section-title">Technical Expertise</h2>
+            <h2 class="section-title">// Technical_Expertise</h2>
             <div class="skills-grid">
                 <div class="skill-card">
                     <i class="fas fa-database"></i>
                     <h3>Data Engineering</h3>
-                    <p>Building robust data pipelines and ETL processes using Apache Airflow as the primary orchestrator.</p>
+                    <p>Building resilient data pipelines & ETL processes. Primary orchestrator: Apache Airflow.</p>
                 </div>
                 <div class="skill-card">
                     <i class="fab fa-python"></i>
-                    <h3>Python Development</h3>
-                    <p>Proficient in Python for data processing, automation, and building scalable applications.</p>
+                    <h3>Python Dev</h3>
+                    <p>Proficient Python for data processing, automation, backend services, scalable application logic.</p>
                 </div>
                 <div class="skill-card">
                     <i class="fas fa-cloud"></i>
                     <h3>Cloud Platforms</h3>
-                    <p>Expertise in AWS and Azure cloud platforms, with a focus on scalable infrastructure and services.</p>
+                    <p>AWS & Azure expertise. Focus on scalable infra, serverless compute, containerization, cost optimization.</p>
                 </div>
                 <div class="skill-card">
-                    <i class="fas fa-code"></i>
+                    <i class="fas fa-code-branch"></i>
                     <h3>Infrastructure as Code</h3>
-                    <p>Extensive IaC experience, ensuring consistent and automated infrastructure deployment.</p>
+                    <p>Terraform proficiency. Ensuring consistent, automated, version-controlled deployments.</p>
                 </div>
                 <div class="skill-card">
                     <i class="fab fa-linux"></i>
                     <h3>Linux Systems</h3>
-                    <p>Strong background with Linux systems administration, shell scripting, and server management.</p>
+                    <p>Shell scripting (Bash/Zsh), performance tuning, security hardening.</p>
                 </div>
                 <div class="skill-card">
                     <i class="fas fa-robot"></i>
@@ -585,33 +80,21 @@
         </div>
     </section>
 
-    <section id="testimonials" class="testimonials">
+    <section id="testimonials" class="testimonials alt-bg">
         <div class="container">
-            <h2 class="section-title">What People Say</h2>
-            <div class="testimonial-card">
-                <p class="testimonial-text">
-                    "Working with Alexander on our cloud migration project was a game-changer. His knowledge of AWS and Azure, combined with his IaC expertise, helped us achieve a seamless transition."
-                </p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">AS</div>
-                    <div class="author-info">
-                        <span class="author-name">Alice Smith</span>
-                        <span class="author-title">Engineering Lead, Nielsen</span>
-                    </div>
-                </div>
-            </div>
+            <h2 class="section-title"># Transmission_Log</h2>
             <div class="testimonial-grid">
                 <div class="testimonial-card">
-                    <p class="testimonial-text">
-                        "Having collaborated with Alexander on his master's thesis, I witnessed his strong interest in data engineering, data science, and cloud technologies. His enthusiasm and technical contributions significantly elevated the quality of the thesis and were instrumental to its success."
+                     <p class="log-prefix">&gt; [ AliceSmith@Nielsen/ENG_LEAD ]:</p>
+                     <p class="testimonial-text">
+                        "Working with Alexander on our cloud migration project was a game-changer. His knowledge of AWS and Azure, combined with his IaC expertise, helped us achieve a seamless transition."
                     </p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">JD</div>
-                        <div class="author-info">
-                            <span class="author-name">Bruno Yun</span>
-                            <span class="author-title">PhD, UoA & LYON 1</span>
-                        </div>
-                    </div>
+                </div>
+                 <div class="testimonial-card">
+                     <p class="log-prefix">&gt; [ BrunoYun@UoA_LYON1/PHD ]:</p>
+                     <p class="testimonial-text">
+                        "Advised Alexander on MSc thesis. Demonstrated strong drive in data eng/sci/cloud domains. Technical contributions significantly elevated thesis quality & success."
+                    </p>
                 </div>
             </div>
         </div>
@@ -620,17 +103,18 @@
     <section id="interests" class="interests">
         <div class="container">
             <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Dodge_black_logo.svg" alt="Dodge Logo" class="dodge-logo">
-            <h2 class="section-title">Beyond Code</h2>
-            <p style="max-width: 600px; margin: 0 auto; color: var(--text-muted);">
-                When I'm not architecting data solutions or working with AI systems, you'll find me exploring the world of automotive technology and working on cars.
-                It's where my passion for precision engineering meets my love for problem-solving.
+            <h2 class="section-title">// Beyond_Code</h2>
+            <p class="interest-text">
+                $ When offline from data architecture & AI systems, compute cycles are redirected.<br/>
+                $ Exploring automotive tech, mechanical engineering, system tuning.<br/>
+                $ Intersection of precision engineering & complex problem-solving.
             </p>
         </div>
     </section>
 
-    <section id="connect" class="social-links">
+    <section id="connect" class="social-links alt-bg">
         <div class="container">
-            <h2 class="section-title">Let's Connect</h2>
+            <h2 class="section-title">$ Connect --secure</h2>
             <div class="tech-stack">
                 <span class="tech-badge">Airflow</span>
                 <span class="tech-badge">Python</span>
@@ -639,113 +123,31 @@
                 <span class="tech-badge">Azure</span>
                 <span class="tech-badge">Terraform</span>
                 <span class="tech-badge">Linux</span>
+                <span class="tech-badge">Docker</span>
+                <span class="tech-badge">Kubernetes</span>
                 <span class="tech-badge">LLMs</span>
             </div>
-            <div style="margin-top: 3rem;">
-                <a href="https://www.linkedin.com/in/alexanderstefanoff/" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-linkedin"></i>
+            <div class="contact-methods">
+                <a href="https://www.linkedin.com/in/alexanderstefanoff/" target="_blank" rel="noopener noreferrer" class="social-icon">
+                    <i class="fab fa-linkedin"></i> LinkedIn
                 </a>
-                <a href="https://github.com/alexander-py" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-github"></i>
+                <a href="https://github.com/alexander-py" target="_blank" rel="noopener noreferrer" class="social-icon">
+                    <i class="fab fa-github"></i> GitHub
                 </a>
-            </div>
-            <div style="margin-top: 2rem;">
-                <a href="https://substack.com/@alexanderpy" class="blog-link" target="_blank" rel="noopener noreferrer">
-                    <i class="fas fa-blog"></i> Read My Blog
+                 <a href="https://substack.com/@alexanderpy" class="blog-link social-icon" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-rss"></i> Substack
                 </a>
             </div>
         </div>
     </section>
 
-    <button class="theme-switch" onclick="toggleTheme()">
-        <i class="fas fa-moon"></i>
-        <span class="theme-text">Dark Mode</span>
-    </button>
+    <footer id="footer">
+         <div class="container">
+             <p>// EOF | &copy; 2023 Alexander Stefanov. System Status: Nominal.</p>
+         </div>
+     </footer>
 
-    <script>
-        // Intersection Observer for fade-in animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
 
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Sticky navigation visibility
-        const stickyNav = document.querySelector('.sticky-nav');
-        const header = document.querySelector('header');
-
-        const headerObserver = new IntersectionObserver(
-            (entries) => {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) {
-                        stickyNav.classList.add('visible');
-                    } else {
-                        stickyNav.classList.remove('visible');
-                    }
-                });
-            },
-            { threshold: 0.1 }
-        );
-
-        headerObserver.observe(header);
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 20,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Theme switching functionality
-        function toggleTheme() {
-            const html = document.documentElement;
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-
-            // Update icon and text
-            const icon = document.querySelector('.theme-switch i');
-            const text = document.querySelector('.theme-text');
-            if (newTheme === 'light') {
-                icon.className = 'fas fa-moon';
-                text.textContent = 'Dark Mode';
-            } else {
-                icon.className = 'fas fa-sun';
-                text.textContent = 'Light Mode';
-            }
-        }
-
-        // Initialize theme
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        document.documentElement.setAttribute('data-theme', savedTheme);
-        const icon = document.querySelector('.theme-switch i');
-        const text = document.querySelector('.theme-text');
-        if (savedTheme === 'light') {
-            icon.className = 'fas fa-moon';
-            text.textContent = 'Dark Mode';
-        } else {
-            icon.className = 'fas fa-sun';
-            text.textContent = 'Light Mode';
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
