@@ -14,7 +14,7 @@
     <!-- <div class="scanline-overlay"></div> -->
 
     <!-- Sticky Navigation Banner -->
-    <nav class="sticky-nav">
+    <nav class="sticky-nav" aria-label="Main navigation">
         <div class="nav-container container">
             <div class="nav-links">
                 <a href="#home" class="nav-link">> home</a>
@@ -26,72 +26,71 @@
         </div>
     </nav>
 
-    <header id="home">
+    <header id="home" aria-labelledby="main-heading">
         <div class="container">
             <div class="hero">
-                <h1>Alexander_Stefanov</h1>
-
+                <h1 id="main-heading">Alexander_Stefanov</h1>
                 <p class="tagline"><span id="typing-effect"></span><span class="cursor">_</span></p>
                 <p class="bio">
-                    &gt; Input: Monster Zero Sugar; Output: Data Pipelines.<br/>
-                    &gt; Process: Crafting robust workflows (Apache Airflow), optimizing data flow.<br/>
-                    &gt; Specialization: Data infrastructure, ETL, cloud-native solutions (AWS/Azure), IaC, AI/ML systems.
+                    > Input: Caffeine; Output: Data Pipelines.<br/>
+                    > Process: Crafting robust workflows (Apache Airflow), optimizing data flow.<br/>
+                    > Specialization: Data infrastructure, ETL, cloud-native solutions (AWS/Azure), IaC, AI/ML systems integration.
                 </p>
                 <a href="#connect" class="cta-button">[ Initiate Connection ]</a>
             </div>
         </div>
     </header>
 
-    <section id="expertise" class="skills-section">
+    <section id="expertise" class="skills-section" aria-labelledby="expertise-title">
         <div class="container">
-            <h2 class="section-title">// Technical_Expertise</h2>
+            <h2 class="section-title" id="expertise-title">// Technical_Expertise</h2>
             <div class="skills-grid">
                 <div class="skill-card">
-                    <i class="fas fa-database"></i>
+                    <i class="fas fa-database" aria-hidden="true"></i>
                     <h3>Data Engineering</h3>
                     <p>Building resilient data pipelines & ETL processes. Primary orchestrator: Apache Airflow.</p>
                 </div>
                 <div class="skill-card">
-                    <i class="fab fa-python"></i>
+                    <i class="fab fa-python" aria-hidden="true"></i>
                     <h3>Python Dev</h3>
                     <p>Proficient Python for data processing, automation, backend services, scalable application logic.</p>
                 </div>
                 <div class="skill-card">
-                    <i class="fas fa-cloud"></i>
+                    <i class="fas fa-cloud" aria-hidden="true"></i>
                     <h3>Cloud Platforms</h3>
                     <p>AWS & Azure expertise. Focus on scalable infra, serverless compute, containerization, cost optimization.</p>
                 </div>
                 <div class="skill-card">
-                    <i class="fas fa-code-branch"></i>
+                    <i class="fas fa-code-branch" aria-hidden="true"></i>
                     <h3>Infrastructure as Code</h3>
-                    <p>Terraform proficiency. Ensuring consistent, automated, version-controlled deployments.</p>
+                    <p>Terraform & CloudFormation proficiency. Ensuring consistent, automated, version-controlled deployments.</p>
                 </div>
                 <div class="skill-card">
-                    <i class="fab fa-linux"></i>
+                    <i class="fab fa-linux" aria-hidden="true"></i>
                     <h3>Linux Systems</h3>
-                    <p>Shell scripting (Bash/Zsh), performance tuning, security hardening.</p>
+                    <p>Strong background: SysAdmin, shell scripting (Bash/Zsh), performance tuning, security hardening.</p>
                 </div>
                 <div class="skill-card">
-                    <i class="fas fa-robot"></i>
+                    <i class="fas fa-robot" aria-hidden="true"></i>
                     <h3>AI & LLMs</h3>
-                    <p>Experience in building and deploying AI agents and working with Large Language Models for various applications.</p>
+                    <p>Experience building/deploying AI agents (LangChain/LlamaIndex), fine-tuning & interfacing with LLMs.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="testimonials" class="testimonials alt-bg">
+    <section id="testimonials" class="testimonials alt-bg" aria-labelledby="testimonials-title">
         <div class="container">
-            <h2 class="section-title"># Transmission_Log</h2>
+            <h2 class="section-title" id="testimonials-title"># Transmission_Log</h2>
             <div class="testimonial-grid">
                 <div class="testimonial-card">
-                     <p class="log-prefix">&gt; [ AliceSmith@Nielsen/ENG_LEAD ]:</p>
+                     <p class="log-prefix">> [ AliceSmith@Nielsen/ENG_LEAD ]:</p>
                      <p class="testimonial-text">
-                        "Working with Alexander on our cloud migration project was a game-changer. His knowledge of AWS and Azure, combined with his IaC expertise, helped us achieve a seamless transition."
+                        "Collaborating with Alexander on cloud migration was pivotal. Deep AWS/Azure knowledge + IaC expertise = seamless transition execution. Resource highly recommended."
                     </p>
                 </div>
                  <div class="testimonial-card">
-                     <p class="log-prefix">&gt; [ BrunoYun@UoA_LYON1/PHD ]:</p>
+                     <p class="log-prefix">> [ BrunoYun@UoA_LYON1/PHD ]:</p>
                      <p class="testimonial-text">
                         "Advised Alexander on MSc thesis. Demonstrated strong drive in data eng/sci/cloud domains. Technical contributions significantly elevated thesis quality & success."
                     </p>
@@ -100,10 +99,10 @@
         </div>
     </section>
 
-    <section id="interests" class="interests">
+    <section id="interests" class="interests" aria-labelledby="interests-title">
         <div class="container">
             <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Dodge_black_logo.svg" alt="Dodge Logo" class="dodge-logo">
-            <h2 class="section-title">// Beyond_Code</h2>
+            <h2 class="section-title" id="interests-title">// Beyond_Code</h2>
             <p class="interest-text">
                 $ When offline from data architecture & AI systems, compute cycles are redirected.<br/>
                 $ Exploring automotive tech, mechanical engineering, system tuning.<br/>
@@ -112,9 +111,9 @@
         </div>
     </section>
 
-    <section id="connect" class="social-links alt-bg">
+    <section id="connect" class="social-links alt-bg" aria-labelledby="connect-title">
         <div class="container">
-            <h2 class="section-title">$ Connect --secure</h2>
+            <h2 class="section-title" id="connect-title">$ Connect --secure</h2>
             <div class="tech-stack">
                 <span class="tech-badge">Airflow</span>
                 <span class="tech-badge">Python</span>
@@ -126,16 +125,17 @@
                 <span class="tech-badge">Docker</span>
                 <span class="tech-badge">Kubernetes</span>
                 <span class="tech-badge">LLMs</span>
+                <span class="tech-badge">LangChain</span>
             </div>
             <div class="contact-methods">
                 <a href="https://www.linkedin.com/in/alexanderstefanoff/" target="_blank" rel="noopener noreferrer" class="social-icon">
-                    <i class="fab fa-linkedin"></i> LinkedIn
+                    <i class="fab fa-linkedin" aria-hidden="true"></i> LinkedIn
                 </a>
                 <a href="https://github.com/alexander-py" target="_blank" rel="noopener noreferrer" class="social-icon">
-                    <i class="fab fa-github"></i> GitHub
+                    <i class="fab fa-github" aria-hidden="true"></i> GitHub
                 </a>
                  <a href="https://substack.com/@alexanderpy" class="blog-link social-icon" target="_blank" rel="noopener noreferrer">
-                    <i class="fas fa-rss"></i> Substack
+                    <i class="fas fa-rss" aria-hidden="true"></i> Substack
                 </a>
             </div>
         </div>
@@ -143,10 +143,9 @@
 
     <footer id="footer">
          <div class="container">
-             <p>// EOF | &copy; 2023 Alexander Stefanov. System Status: Nominal.</p>
+             <p>// EOF | © 2024 Alexander Stefanov. System Status: Nominal.</p>
          </div>
      </footer>
-
 
     <script src="script.js"></script>
 </body>
