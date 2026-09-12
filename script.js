@@ -1,194 +1,197 @@
-document.addEventListener('DOMContentLoaded', () => {
+/* Alexander Stefanov — alexanderstefanov.com
+ * Progressive enhancement: every feature below is additive. If this file fails
+ * to load, `index.html` still renders completely (see the .no-js/.js switch). */
+(() => {
+    'use strict';
 
-    // --- Typing Effect for Tagline ---
-    const typingElement = document.getElementById('typing-effect');
-    const cursorElement = document.querySelector('.cursor');
-    const textToType = "Data Engineer | Cloud Architect | AI Enthusiast";
-    let charIndex = 0;
-    const typingSpeed = 70; // Milliseconds per character
-    const initialDelay = 500; // Delay before starting
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    function type() {
-        if (charIndex < textToType.length && typingElement) {
-            typingElement.textContent += textToType.charAt(charIndex);
-            charIndex++;
-            setTimeout(type, typingSpeed);
-        } else if (cursorElement) {
-            // Ensure cursor continues blinking after typing is done
-            cursorElement.style.animation = 'blink 1s step-end infinite';
-        }
-    }
+    /* --- Typing effect for the tagline ---
+     * The full tagline ships in the HTML (so it is present for crawlers, screen
+     * readers and no-JS visitors); here we rewind it and type it back in. */
+    const initTypingEffect = () => {
+        const typingElement = document.getElementById('typing-effect');
+        const cursorElement = document.querySelector('.cursor');
+        if (!typingElement) return;
 
-    if (cursorElement) {
-        cursorElement.style.display = 'none'; // Hide cursor initially
-    }
+        const textToType = typingElement.textContent.trim();
+        if (prefersReducedMotion.matches || !textToType) return;
 
-    if (typingElement) {
-        setTimeout(() => {
-            if (cursorElement) {
-                cursorElement.style.display = 'inline-block'; // Make cursor visible
+        const typingSpeed = 70;
+        const initialDelay = 500;
+        let charIndex = 0;
+
+        typingElement.textContent = '';
+        if (cursorElement) cursorElement.style.visibility = 'hidden';
+
+        const type = () => {
+            typingElement.textContent = textToType.slice(0, ++charIndex);
+            if (charIndex < textToType.length) {
+                window.setTimeout(type, typingSpeed);
             }
+        };
+
+        window.setTimeout(() => {
+            if (cursorElement) cursorElement.style.visibility = '';
             type();
         }, initialDelay);
-    }
+    };
 
-    // --- Intersection Observer for general section fade-in animations ---
-    const sectionFadeInObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                // sectionFadeInObserver.unobserve(entry.target); // Optional: unobserve after first time
-            }
-        });
-    }, {
-        threshold: 0.1 // Trigger when 10% of the element is visible
-    });
+    /* --- Reveal sections as they scroll into view --- */
+    const initSectionReveals = () => {
+        const targets = document.querySelectorAll('section[id], header#home');
 
-    // Observe all <section> elements and the <header> for fade-in
-    document.querySelectorAll('section[id], header#home').forEach(el => {
-        sectionFadeInObserver.observe(el);
-    });
+        if (!('IntersectionObserver' in window)) {
+            targets.forEach(el => el.classList.add('visible'));
+            return;
+        }
 
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Reveal once; don't re-hide on scroll up.
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
 
-    // --- Sticky navigation visibility ---
-    const stickyNav = document.querySelector('.sticky-nav');
-    const headerElement = document.querySelector('header#home');
+        targets.forEach(el => observer.observe(el));
+    };
 
-    if (stickyNav && headerElement) {
-        const headerObserver = new IntersectionObserver(
-            (entries) => {
-                entries.forEach(entry => {
-                    // Show nav when header is NOT intersecting AND its bottom is above viewport top
-                    if (!entry.isIntersecting && entry.boundingClientRect.bottom < 0) {
-                        stickyNav.classList.add('visible');
-                    } else {
-                        stickyNav.classList.remove('visible');
-                    }
-                });
-            },
-            { threshold: 0 } // Trigger when any part of header (top/bottom) crosses viewport edge
-        );
-        headerObserver.observe(headerElement);
-    }
+    /* --- Sticky nav, smooth scrolling, active link --- */
+    const initNavigation = () => {
+        const stickyNav = document.querySelector('.sticky-nav');
+        const headerElement = document.querySelector('header#home');
+        const navLinks = Array.from(document.querySelectorAll('.nav-link'));
+        const sections = Array.from(document.querySelectorAll('header[id], section[id]'));
+        if (!navLinks.length || !sections.length) return;
 
-    // --- Smooth scrolling & Active Nav Link ---
-    const navLinks = document.querySelectorAll('.nav-link');
-    const scrollTrackedSections = Array.from(document.querySelectorAll('header[id], section[id]'));
-    const ctaButton = document.querySelector('.cta-button[href="#connect"]');
+        const navHeight = () => (stickyNav ? stickyNav.offsetHeight : 70);
 
-    const getEffectiveNavHeight = () => (stickyNav ? stickyNav.offsetHeight : 70); // Use actual height or fallback
+        // Show the nav once the hero has scrolled away.
+        const updateNavVisibility = () => {
+            if (!stickyNav || !headerElement) return;
+            const scrolledPastHero = headerElement.getBoundingClientRect().bottom <= 0;
+            stickyNav.classList.toggle('visible', scrolledPastHero);
+        };
 
-    function smoothScrollToTarget(targetId) {
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            const navOffset = getEffectiveNavHeight();
-            // For #home, we might not want an offset if the nav isn't sticky yet.
-            // However, scroll-padding-top in CSS handles the final resting spot.
-            // The JS scroll should aim for that spot.
-            const elementPosition = targetElement.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+        const scrollToTarget = (targetId) => {
+            const target = document.querySelector(targetId);
+            if (!target) return;
+
+            // #home sits at the top of the document; anything else needs to clear the nav.
+            const top = targetId === '#home'
+                ? 0
+                : target.getBoundingClientRect().top + window.pageYOffset - navHeight();
 
             window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
+                top: Math.max(0, top),
+                behavior: prefersReducedMotion.matches ? 'auto' : 'smooth'
+            });
+        };
+
+        const setActiveLink = (sectionId) => {
+            navLinks.forEach(link => {
+                const isActive = link.getAttribute('href') === `#${sectionId}`;
+                link.classList.toggle('active', isActive);
+                if (isActive) {
+                    link.setAttribute('aria-current', 'true');
+                } else {
+                    link.removeAttribute('aria-current');
+                }
+            });
+        };
+
+        // The active section is the last one whose top has passed just under the nav.
+        const updateActiveLink = () => {
+            const scrollPosition = window.pageYOffset;
+            const activationLine = scrollPosition + navHeight() + 20;
+            const atBottom = (window.innerHeight + scrollPosition) >= document.documentElement.scrollHeight - 2;
+
+            let activeId = sections[0].id;
+
+            if (atBottom) {
+                activeId = sections[sections.length - 1].id;
+            } else {
+                for (const section of sections) {
+                    if (section.offsetTop <= activationLine) activeId = section.id;
+                }
+            }
+
+            setActiveLink(activeId);
+        };
+
+        // --- Back to top ---
+        const backToTop = document.getElementById('back-to-top');
+        const updateBackToTop = () => {
+            if (!backToTop) return;
+            backToTop.classList.toggle('visible', window.pageYOffset > window.innerHeight);
+        };
+
+        // rAF-throttle so scroll handling stays on the browser's paint cadence.
+        let ticking = false;
+        const onScroll = () => {
+            if (ticking) return;
+            ticking = true;
+            window.requestAnimationFrame(() => {
+                updateActiveLink();
+                updateNavVisibility();
+                updateBackToTop();
+                ticking = false;
+            });
+        };
+
+        if (backToTop) {
+            backToTop.addEventListener('click', () => {
+                scrollToTarget('#home');
+                // Hand focus back to the top of the document for keyboard users.
+                const heading = document.getElementById('main-heading');
+                if (heading) {
+                    heading.setAttribute('tabindex', '-1');
+                    heading.focus({ preventScroll: true });
+                }
             });
         }
-    }
 
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = link.getAttribute('href');
-            smoothScrollToTarget(targetId);
-        });
-    });
-
-    if (ctaButton) {
-        ctaButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = ctaButton.getAttribute('href');
-            smoothScrollToTarget(targetId);
-        });
-    }
-
-    // Active nav link highlighting on scroll
-    function updateActiveLink() {
-        const scrollPosition = window.pageYOffset;
-        // This offset determines how early a section is considered "active" when scrolling down.
-        // It should be slightly more than nav height to activate when section top passes under nav.
-        const activationOffset = getEffectiveNavHeight() + 20; // 20px buffer
-
-        let newActiveSectionId = null;
-
-        scrollTrackedSections.forEach(section => {
-            const sectionTop = section.offsetTop; // Absolute top of the section
-            const sectionHeight = section.offsetHeight;
-
-            // Section is active if current scroll position is:
-            // - Past (sectionTop - activationOffset)
-            // - And Before (sectionTop + sectionHeight - activationOffset)
-            if (scrollPosition >= (sectionTop - activationOffset) &&
-                scrollPosition < (sectionTop + sectionHeight - activationOffset)) {
-                newActiveSectionId = section.id;
-            }
+        document.querySelectorAll('a[href^="#"]:not([href="#"]):not(.skip-link)').forEach(link => {
+            link.addEventListener('click', (event) => {
+                const targetId = link.getAttribute('href');
+                if (!document.querySelector(targetId)) return;
+                event.preventDefault();
+                scrollToTarget(targetId);
+                if (history.replaceState) history.replaceState(null, '', targetId);
+            });
         });
 
-        // If scrolled to the very bottom of the page, make the last section active
-        if ((window.innerHeight + scrollPosition) >= document.body.offsetHeight - 20) { // 20px buffer from bottom
-            newActiveSectionId = scrollTrackedSections[scrollTrackedSections.length - 1].id;
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
+
+        updateActiveLink();
+        updateNavVisibility();
+        updateBackToTop();
+
+        // Re-align a deep link now that fonts/layout have settled.
+        if (window.location.hash && document.querySelector(window.location.hash)) {
+            window.setTimeout(() => scrollToTarget(window.location.hash), 120);
         }
+    };
 
-        // If at the very top of the page, 'home' should be active
-        // (This condition might overlap with the loop's finding for #home, which is fine)
-        if (scrollPosition < (scrollTrackedSections[0].offsetTop + scrollTrackedSections[0].offsetHeight - activationOffset) && scrollPosition < 50) {
-             newActiveSectionId = scrollTrackedSections[0].id;
-        }
+    /* --- Footer year --- */
+    const initYear = () => {
+        const year = document.getElementById('year');
+        if (year) year.textContent = new Date().getFullYear();
+    };
 
+    const init = () => {
+        initTypingEffect();
+        initSectionReveals();
+        initNavigation();
+        initYear();
+    };
 
-        navLinks.forEach(link => {
-            const linkHref = link.getAttribute('href');
-            if (linkHref === `#${newActiveSectionId}`) {
-                link.classList.add('active');
-            } else {
-                link.classList.remove('active');
-            }
-        });
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
     }
-
-    // Debounce function
-    function debounce(func, wait = 15, immediate = false) {
-        let timeout;
-        return function() {
-            const context = this, args = arguments;
-            const later = function() {
-                timeout = null;
-                if (!immediate) func.apply(context, args);
-            };
-            const callNow = immediate && !timeout;
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-            if (callNow) func.apply(context, args);
-        };
-    }
-
-    if (navLinks.length > 0 && scrollTrackedSections.length > 0) {
-        window.addEventListener('scroll', debounce(updateActiveLink, 50));
-        window.addEventListener('resize', debounce(updateActiveLink, 100));
-        updateActiveLink(); // Initial check on load
-
-        // Handle hash on load
-        if (window.location.hash) {
-            const idFromHash = window.location.hash;
-            const targetSection = document.querySelector(idFromHash);
-            if (targetSection) {
-                setTimeout(() => {
-                    smoothScrollToTarget(idFromHash);
-                    // updateActiveLink will be called by the scroll event,
-                    // but an explicit call after scroll ensures correct highlighting.
-                    setTimeout(updateActiveLink, 100); // after scroll animation might finish
-                }, 100);
-            }
-        }
-    }
-
-}); // End DOMContentLoaded
+})();

@@ -1,0 +1,13 @@
+{
+  "name": "Alexander Stefanov",
+  "short_name": "A. Stefanov",
+  "description": "Data engineer building resilient pipelines with Apache Airflow, Python and SQL across AWS and Azure.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0d0d",
+  "theme_color": "#0d0d0d",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/assets/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}
